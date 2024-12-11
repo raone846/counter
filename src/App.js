@@ -1,23 +1,32 @@
+import React, { Component } from 'react';
 import './App.css';
-import { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0);
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0,
+    };
+  }
 
-  const handleCountChange = (value) => {
-    setCount(count + value);
+  handleCountChange = (value) => {
+    this.setState((prevState) => ({
+      count: prevState.count + value,
+    }));
   };
 
-  return (
-    <div className="App">
-      <h1>Counter App</h1>
-      <div>
-        <label>Count: {count}</label>
+  render() {
+    return (
+      <div className="App">
+        <h1>Counter App</h1>
+        <div>
+          <label>Count: {this.state.count}</label>
+        </div>
+        <button onClick={() => this.handleCountChange(1)}>Increment</button>
+        <button onClick={() => this.handleCountChange(-1)}>Decrement</button>
       </div>
-      <button onClick={() => handleCountChange(1)}>Increment</button>
-      <button onClick={() => handleCountChange(-1)}>Decrement</button>
-    </div>
-  );
+    );
+  }
 }
 
 export default App;
